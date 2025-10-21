@@ -3,11 +3,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Container } from '@/components/ui/container';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { ArrowLeft, Home, ShoppingBag } from 'lucide-react';
 import { getBookById } from '@/data/booksData';
 import { useReviewsStore } from '@/store/reviewsStore';
+import { useCartActions } from '@/hooks/useCart';
 import BookGallery from '@/components/book-detail/BookGallery';
 import BookInfo from '@/components/book-detail/BookInfo';
 import BookTabs from '@/components/book-detail/BookTabs';
@@ -18,6 +20,7 @@ const BookDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { initializeMockReviews } = useReviewsStore();
+  const { getItemCount } = useCartActions();
 
   const book = id ? getBookById(id) : undefined;
 
@@ -161,9 +164,17 @@ const BookDetailPage = () => {
           <Button
             variant="outline"
             size="sm"
-            className="bg-background/90 backdrop-blur-sm border-border shadow-lg hover:shadow-xl transition-all"
+            className="relative bg-background/90 backdrop-blur-sm border-border shadow-lg hover:shadow-xl transition-all"
           >
             Корзина
+            {getItemCount() > 0 && (
+              <Badge 
+                variant="destructive" 
+                className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs"
+              >
+                {getItemCount() > 99 ? '99+' : getItemCount()}
+              </Badge>
+            )}
           </Button>
         </Cart>
       </div>
