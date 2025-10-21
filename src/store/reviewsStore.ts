@@ -155,8 +155,10 @@ export const useReviewsStore = create<ReviewsState>()(
           date: new Date()
         };
 
-        const bookReviews = reviews.get(reviewData.bookId) || [];
-        const updatedReviews = new Map(reviews);
+        // Убеждаемся, что reviews является Map
+        const reviewsMap = reviews instanceof Map ? reviews : new Map();
+        const bookReviews = reviewsMap.get(reviewData.bookId) || [];
+        const updatedReviews = new Map(reviewsMap);
         updatedReviews.set(reviewData.bookId, [...bookReviews, newReview]);
         
         set({ reviews: updatedReviews });
@@ -164,21 +166,27 @@ export const useReviewsStore = create<ReviewsState>()(
 
       markReviewHelpful: (reviewId: string, bookId: string) => {
         const { reviews } = get();
-        const bookReviews = reviews.get(bookId) || [];
+        
+        // Убеждаемся, что reviews является Map
+        const reviewsMap = reviews instanceof Map ? reviews : new Map();
+        const bookReviews = reviewsMap.get(bookId) || [];
         const updatedReviews = bookReviews.map(review =>
           review.id === reviewId
             ? { ...review, helpful: review.helpful + 1 }
             : review
         );
 
-        const newReviews = new Map(reviews);
+        const newReviews = new Map(reviewsMap);
         newReviews.set(bookId, updatedReviews);
         set({ reviews: newReviews });
       },
 
       getReviewsForBook: (bookId: string) => {
         const { reviews } = get();
-        const bookReviews = reviews.get(bookId) || [];
+        
+        // Убеждаемся, что reviews является Map
+        const reviewsMap = reviews instanceof Map ? reviews : new Map();
+        const bookReviews = reviewsMap.get(bookId) || [];
         
         const averageRating = bookReviews.length > 0
           ? bookReviews.reduce((sum, review) => sum + review.rating, 0) / bookReviews.length
@@ -193,7 +201,15 @@ export const useReviewsStore = create<ReviewsState>()(
 
       initializeMockReviews: () => {
         const { reviews } = get();
-        const newReviews = new Map(reviews);
+        
+        // Убеждаемся, что reviews является Map
+        let newReviews: Map<string, BookReview[]>;
+        if (reviews instanceof Map) {
+          newReviews = new Map(reviews);
+        } else {
+          // Если это не Map (например, объект из localStorage), создаем новый Map
+          newReviews = new Map();
+        }
 
         Object.entries(mockReviews).forEach(([bookId, reviewData]) => {
           if (!newReviews.has(bookId)) {
@@ -211,6 +227,38 @@ export const useReviewsStore = create<ReviewsState>()(
     }),
     {
       name: 'reviews-storage',
+      storage: {
+        getItem: (name) => {
+          const str = localStorage.getItem(name);
+          if (!str) return null;
+          try {
+            const data = JSON.parse(str);
+            // Преобразуем объект обратно в Map
+            if (data.state && data.state.reviews) {
+              data.state.reviews = new Map(Object.entries(data.state.reviews));
+            }
+            return data;
+          } catch {
+            return null;
+          }
+        },
+        setItem: (name, value) => {
+          try {
+            // Преобразуем Map в обычный объект для сохранения
+            const dataToStore = {
+              ...value,
+              state: {
+                ...value.state,
+                reviews: value.state.reviews ? Object.fromEntries(value.state.reviews) : {}
+              }
+            };
+            localStorage.setItem(name, JSON.stringify(dataToStore));
+          } catch (error) {
+            console.error('Error saving to localStorage:', error);
+          }
+        },
+        removeItem: (name) => localStorage.removeItem(name),
+      },
     }
   )
 );
