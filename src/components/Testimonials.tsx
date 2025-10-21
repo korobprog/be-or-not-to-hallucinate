@@ -5,23 +5,93 @@ const testimonials = [
   {
     name: "Александр М.",
     role: "Владелец IT-компании",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
+    image: "/images/testimonials/alexander.jpg",
     rating: 5,
     text: "Семинар Павла полностью изменил моё понимание лидерства. Теперь я действую из состояния осознанности, а не реакции на внешние обстоятельства.",
   },
   {
     name: "Елена С.",
     role: "Судья окружного суда",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
+    image: "/images/testimonials/elena.jpg",
     rating: 5,
     text: "Павел помог мне найти баланс между профессиональной деятельностью и внутренним покоем. Его подход — это идеальное сочетание практичности и духовности.",
   },
   {
     name: "Дмитрий К.",
     role: "Инвестор",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop",
+    image: "/images/testimonials/dmitry.jpg",
     rating: 5,
     text: "Впервые встретил наставника, который говорит о духовности языком действия и результата. Рекомендую всем лидерам и предпринимателям.",
+  },
+  {
+    name: "Мария В.",
+    role: "Психолог",
+    image: "/images/testimonials/maria.jpg",
+    rating: 5,
+    text: "Методы Павла помогли мне глубже понять природу человеческого сознания. Его подход к самоосознанию действительно работает.",
+  },
+  {
+    name: "Андрей П.",
+    role: "Предприниматель",
+    image: "/images/testimonials/andrey.jpg",
+    rating: 5,
+    text: "После семинара я стал принимать более осознанные решения в бизнесе. Результаты превзошли все ожидания.",
+  },
+  {
+    name: "Ольга Н.",
+    role: "Коуч",
+    image: "/images/testimonials/olga.jpg",
+    rating: 5,
+    text: "Павел научил меня видеть за поверхностью событий. Теперь я помогаю клиентам находить истинные причины их проблем.",
+  },
+  {
+    name: "Сергей Л.",
+    role: "Директор по развитию",
+    image: "/images/testimonials/sergey.jpg",
+    rating: 5,
+    text: "Методы Павла помогли мне стать более эффективным лидером. Теперь я принимаю решения из состояния внутренней силы.",
+  },
+  {
+    name: "Анна К.",
+    role: "Маркетолог",
+    image: "/images/testimonials/anna.jpg",
+    rating: 5,
+    text: "После семинара я поняла, что настоящая сила в осознанности. Это изменило не только мою работу, но и всю жизнь.",
+  },
+  {
+    name: "Михаил Р.",
+    role: "Финансовый аналитик",
+    image: "/images/testimonials/mikhail.jpg",
+    rating: 5,
+    text: "Павел показал мне, как соединить логику с интуицией. Теперь мои инвестиционные решения стали намного точнее.",
+  },
+  {
+    name: "Татьяна М.",
+    role: "HR-менеджер",
+    image: "/images/testimonials/tatyana.jpg",
+    rating: 5,
+    text: "Работа с Павлом помогла мне лучше понимать людей. Теперь я могу видеть потенциал в каждом сотруднике.",
+  },
+  {
+    name: "Владимир С.",
+    role: "Консультант",
+    image: "/images/testimonials/vladimir.jpg",
+    rating: 5,
+    text: "Подход Павла к самоосознанию — это не просто теория, а практический инструмент для ежедневного применения.",
+  },
+  {
+    name: "Екатерина В.",
+    role: "Дизайнер",
+    image: "/images/testimonials/ekaterina.jpg",
+    rating: 5,
+    text: "Семинар открыл мне новые грани творчества. Теперь я создаю не просто красивые вещи, а то, что действительно вдохновляет.",
+  },
+  {
+    name: "Игорь П.",
+    role: "Продакт-менеджер",
+    image: "/images/testimonials/igor.jpg",
+    rating: 5,
+    text: "Павел научил меня видеть продукт не только с точки зрения функций, но и с точки зрения человеческих потребностей.",
   },
 ];
 
@@ -46,7 +116,7 @@ const Testimonials = () => {
           </div>
 
           {/* Testimonials Grid */}
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <Card
                 key={index}

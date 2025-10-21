@@ -6,13 +6,12 @@ import { toast } from "sonner";
 const tickets = [
   {
     name: "Базовый",
-    price: "3 500 ₽",
+    price: "0 ₽",
     description: "Идеально для начала пути",
     features: [
       "Доступ к семинару в Zoom",
       "Запись на 30 дней",
       "Методические материалы",
-      "Сертификат участника",
     ],
     popular: false,
   },
@@ -45,8 +44,9 @@ const tickets = [
 ];
 
 const Tickets = () => {
-  const handlePurchase = (ticketName: string) => {
-    toast.success(`Вы выбрали билет "${ticketName}". Перенаправляем на оплату...`);
+  const handlePurchase = (ticketName: string, price: string) => {
+    const action = price === "0 ₽" ? "записались на" : "купили";
+    toast.success(`Вы ${action} "${ticketName}". Перенаправляем на оплату...`);
   };
 
   return (
@@ -121,9 +121,9 @@ const Tickets = () => {
                       ? "bg-accent hover:bg-accent/90 text-primary"
                       : "bg-primary hover:bg-primary/90 text-primary-foreground"
                   }`}
-                  onClick={() => handlePurchase(ticket.name)}
+                  onClick={() => handlePurchase(ticket.name, ticket.price)}
                 >
-                  Купить билет
+                  {ticket.price === "0 ₽" ? "Записаться" : "Купить"}
                 </Button>
               </Card>
             ))}

@@ -1,73 +1,143 @@
-# Welcome to your Lovable project
+# "Действуй эффективно" - Онлайн-семинар по самоосознанию
 
-## Project info
+Веб-приложение для онлайн-семинара по самоосознанию с наставником Павлом, включающее интернет-магазин духовных книг.
 
-**URL**: https://lovable.dev/projects/ee027018-309b-4522-ba8d-e95b9a966adc
+## О проекте
 
-## How can I edit this code?
+Это современное веб-приложение, созданное для проведения онлайн-семинара "Быть, а не галлюцинировать" с наставником Павлом. Проект объединяет:
 
-There are several ways of editing your application.
+- **Информационный сайт** о семинаре и наставнике
+- **Интернет-магазин** духовных книг и литературы
+- **Систему регистрации** на семинар
+- **Отзывы участников** и рекомендации
 
-**Use Lovable**
+### Основные разделы:
+- Главная страница с информацией о семинаре
+- О наставнике Павле
+- Темы семинара
+- Билеты и регистрация
+- Отзывы участников
+- Интернет-магазин книг
+- Детальные страницы книг с отзывами и видео
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ee027018-309b-4522-ba8d-e95b9a966adc) and start prompting.
+## Технологии
 
-Changes made via Lovable will be committed automatically to this repo.
+### Frontend
+- **React 18** - основная библиотека для создания пользовательского интерфейса
+- **TypeScript** - типизированный JavaScript для надежности кода
+- **Vite** - быстрый инструмент сборки и разработки
+- **React Router DOM** - маршрутизация в приложении
 
-**Use your preferred IDE**
+### UI/UX
+- **Tailwind CSS** - утилитарный CSS-фреймворк для стилизации
+- **shadcn/ui** - современная библиотека компонентов
+- **Radix UI** - доступные и настраиваемые компоненты
+- **Lucide React** - иконки
+- **Framer Motion** - анимации (через Tailwind CSS)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Управление состоянием
+- **Zustand** - легковесная библиотека для управления состоянием
+- **React Query (TanStack Query)** - управление серверным состоянием
+- **React Hook Form** - управление формами
+- **Zod** - валидация схем
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Дополнительные библиотеки
+- **date-fns** - работа с датами
+- **clsx** - условные CSS классы
+- **tailwind-merge** - слияние Tailwind классов
+- **sonner** - уведомления (toasts)
 
-Follow these steps:
+## Быстрый старт
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Требования
+- Node.js (версия 18 или выше)
+- npm, yarn или pnpm
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Установка и запуск
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+1. **Клонируйте репозиторий:**
+```bash
+git clone <URL_РЕПОЗИТОРИЯ>
+cd be-or-not-to-hallucinate
 ```
 
-**Edit a file directly in GitHub**
+2. **Установите зависимости:**
+```bash
+npm install
+# или
+yarn install
+# или
+pnpm install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. **Запустите сервер разработки:**
+```bash
+npm run dev
+# или
+yarn dev
+# или
+pnpm dev
+```
 
-**Use GitHub Codespaces**
+4. **Откройте браузер:**
+Приложение будет доступно по адресу `http://localhost:5173`
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Доступные команды
 
-## What technologies are used for this project?
+```bash
+# Запуск сервера разработки
+npm run dev
 
-This project is built with:
+# Сборка для продакшена
+npm run build
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+# Сборка в режиме разработки
+npm run build:dev
 
-## How can I deploy this project?
+# Предварительный просмотр продакшен сборки
+npm run preview
 
-Simply open [Lovable](https://lovable.dev/projects/ee027018-309b-4522-ba8d-e95b9a966adc) and click on Share -> Publish.
+# Проверка кода линтером
+npm run lint
+```
 
-## Can I connect a custom domain to my Lovable project?
+## Структура проекта
 
-Yes, you can!
+```
+src/
+├── components/          # React компоненты
+│   ├── ui/             # Базовые UI компоненты (shadcn/ui)
+│   ├── shop/           # Компоненты магазина
+│   └── book-detail/    # Компоненты детальной страницы книги
+├── pages/              # Страницы приложения
+├── hooks/              # Пользовательские хуки
+├── context/            # React контексты
+├── store/              # Zustand хранилища
+├── services/           # Сервисы и API
+├── data/               # Статические данные
+├── types/               # TypeScript типы
+└── lib/                 # Утилиты
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Особенности
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- **Адаптивный дизайн** - работает на всех устройствах
+- **Темная/светлая тема** - поддержка переключения тем
+- **Корзина покупок** - полнофункциональная система покупок
+- **Фильтрация книг** - по категориям, цене, рейтингу
+- **Поиск** - по названию, автору, описанию
+- **Отзывы** - система отзывов на книги
+- **Видео контент** - встроенные видео для книг
+
+## Развертывание
+
+Для развертывания используйте команду:
+```bash
+npm run build
+```
+
+Собранные файлы будут в папке `dist/`, которые можно загрузить на любой веб-сервер.
+
+## Лицензия
+
+Этот проект создан для образовательных целей.

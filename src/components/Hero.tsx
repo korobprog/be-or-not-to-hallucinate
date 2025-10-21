@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import Cart from "@/components/shop/Cart";
 
 const Hero = () => {
   return (
@@ -33,10 +35,17 @@ const Hero = () => {
             Быть, а не галлюцинировать
           </p>
 
-          <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
-            Семинар с Павлом — наставником владельцев бизнеса и судей. 
-            Откройте путь к осознанной жизни через психологию, философию и духовные практики.
-          </p>
+          <div className="flex items-center justify-center gap-4 max-w-2xl mx-auto">
+            <img 
+              src="/images/pavel.jpg"
+              alt="Наставник Павел"
+              className="w-16 h-16 rounded-full object-cover border-2 border-white/30 shadow-lg"
+            />
+            <p className="text-lg text-white/70 leading-relaxed">
+              Семинар с Павлом — наставником владельцев бизнеса и судей. 
+              Откройте путь к осознанной жизни через психологию, философию и духовные практики.
+            </p>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
             <Button 
@@ -48,11 +57,14 @@ const Hero = () => {
             </Button>
             
             <Button 
+              asChild
               size="lg"
               variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 font-semibold text-lg px-8 py-6 backdrop-blur-sm"
+              className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white font-semibold text-lg px-8 py-6 backdrop-blur-sm"
             >
-              Купить книги
+              <Link to="/shop">
+                Купить книги
+              </Link>
             </Button>
           </div>
 
@@ -79,6 +91,19 @@ const Hero = () => {
         <div className="w-6 h-10 border-2 border-white/30 rounded-full p-1">
           <div className="w-1.5 h-3 bg-accent rounded-full animate-bounce mx-auto" />
         </div>
+      </div>
+
+      {/* Floating Cart Button */}
+      <div className="fixed top-6 right-6 z-50">
+        <Cart>
+          <Button
+            variant="outline"
+            size="sm"
+            className="bg-white/90 backdrop-blur-sm border-white/30 text-foreground hover:bg-white shadow-lg"
+          >
+            Корзина
+          </Button>
+        </Cart>
       </div>
     </section>
   );
