@@ -37,7 +37,7 @@ type CheckoutFormData = z.infer<typeof checkoutSchema>;
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
-  const { items, total, clearCart } = useCartActions();
+  const { items, getTotal, clearCart } = useCartActions();
   const { addToHistory } = useViewHistory();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
@@ -128,7 +128,7 @@ const CheckoutPage = () => {
   };
 
   const deliveryCost = deliveryMethod === "delivery" ? 300 : 0;
-  const finalTotal = total + deliveryCost;
+  const finalTotal = getTotal() + deliveryCost;
 
   return (
     <div className="min-h-screen bg-background">
@@ -376,7 +376,7 @@ const CheckoutPage = () => {
                   <div className="space-y-3">
                     <div className="flex justify-between">
                       <span>Товары ({items.reduce((sum, item) => sum + item.quantity, 0)} шт.)</span>
-                      <span>{total.toLocaleString()} ₽</span>
+                      <span>{getTotal().toLocaleString()} ₽</span>
                     </div>
                     
                     {deliveryMethod === "delivery" && (

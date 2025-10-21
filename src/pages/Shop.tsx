@@ -14,10 +14,12 @@ import SearchBar from "@/components/shop/SearchBar";
 import Breadcrumbs from "@/components/shop/Breadcrumbs";
 import Cart from "@/components/shop/Cart";
 import ProductQuickView from "@/components/shop/ProductQuickView";
+import MobileBottomNav from "@/components/shop/MobileBottomNav";
 
 const Shop = () => {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   
   const {
     books,
@@ -77,7 +79,7 @@ const Shop = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-20 lg:pb-0">
       {/* Header с корзиной */}
       <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
         <Container className="py-4">
@@ -109,6 +111,8 @@ const Shop = () => {
               activeFiltersCount={activeFiltersCount}
               availableAuthors={availableAuthors}
               sortOptions={sortOptions}
+              isOpen={isFiltersOpen}
+              onOpenChange={setIsFiltersOpen}
             />
           </div>
 
@@ -272,6 +276,9 @@ const Shop = () => {
         isOpen={!!selectedBook}
         onClose={handleCloseQuickView}
       />
+
+      {/* Mobile Bottom Navigation */}
+      <MobileBottomNav onFiltersOpen={() => setIsFiltersOpen(true)} />
     </div>
   );
 };
