@@ -87,7 +87,9 @@ const Shop = () => {
             <div className="flex items-center gap-4">
               <Breadcrumbs />
             </div>
-            <Cart />
+            <div className="hidden lg:block">
+              <Cart />
+            </div>
           </div>
         </Container>
       </div>
