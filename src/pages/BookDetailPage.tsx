@@ -12,6 +12,7 @@ import BookGallery from '@/components/book-detail/BookGallery';
 import BookInfo from '@/components/book-detail/BookInfo';
 import BookTabs from '@/components/book-detail/BookTabs';
 import RelatedBooks from '@/components/book-detail/RelatedBooks';
+import Cart from '@/components/shop/Cart';
 
 const BookDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -153,6 +154,19 @@ const BookDetailPage = () => {
           )}
         </div>
       </Container>
+
+      {/* Плавающая кнопка корзины */}
+      <div className="fixed top-6 right-6 z-50">
+        <Cart>
+          <Button
+            variant="outline"
+            size="sm"
+            className="bg-background/90 backdrop-blur-sm border-border shadow-lg hover:shadow-xl transition-all"
+          >
+            Корзина
+          </Button>
+        </Cart>
+      </div>
     </div>
   );
 };
