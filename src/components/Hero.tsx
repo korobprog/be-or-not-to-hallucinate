@@ -2,12 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import Cart from "@/components/shop/Cart";
-import { useCartActions } from "@/hooks/useCart";
 
 const Hero = () => {
-  const { getItemCount } = useCartActions();
-  
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Gradient Background */}
@@ -95,27 +91,6 @@ const Hero = () => {
         <div className="w-6 h-10 border-2 border-white/30 rounded-full p-1">
           <div className="w-1.5 h-3 bg-accent rounded-full animate-bounce mx-auto" />
         </div>
-      </div>
-
-      {/* Floating Cart Button */}
-      <div className="fixed top-6 right-6 z-50">
-        <Cart>
-          <Button
-            variant="outline"
-            size="sm"
-            className="relative bg-white/90 backdrop-blur-sm border-white/30 text-foreground hover:bg-white shadow-lg"
-          >
-            Корзина
-            {getItemCount() > 0 && (
-              <Badge 
-                variant="destructive" 
-                className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs"
-              >
-                {getItemCount() > 99 ? '99+' : getItemCount()}
-              </Badge>
-            )}
-          </Button>
-        </Cart>
       </div>
     </section>
   );

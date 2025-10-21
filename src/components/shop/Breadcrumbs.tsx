@@ -19,7 +19,7 @@ const Breadcrumbs = ({ items = [], className }: BreadcrumbsProps) => {
   const getBreadcrumbsFromPath = (): BreadcrumbItem[] => {
     const pathSegments = location.pathname.split('/').filter(Boolean);
     const breadcrumbs: BreadcrumbItem[] = [
-      { label: 'Главная', href: '/' }
+      { label: 'Главная', href: '/shop' }
     ];
 
     let currentPath = '';

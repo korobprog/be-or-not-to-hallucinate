@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { ArrowLeft, Home, ShoppingBag } from 'lucide-react';
+import { ArrowLeft, Home } from 'lucide-react';
 import { getBookById } from '@/data/booksData';
 import { useReviewsStore } from '@/store/reviewsStore';
 import { useCartActions } from '@/hooks/useCart';
@@ -43,10 +43,6 @@ const BookDetailPage = () => {
   };
 
   const handleHomeClick = () => {
-    navigate('/');
-  };
-
-  const handleShopClick = () => {
     navigate('/shop');
   };
 
@@ -73,11 +69,6 @@ const BookDetailPage = () => {
               Главная
             </Button>
             <span>/</span>
-            <Button variant="ghost" size="sm" onClick={handleShopClick}>
-              <ShoppingBag className="w-4 h-4 mr-1" />
-              Магазин
-            </Button>
-            <span>/</span>
             <span>Книга не найдена</span>
           </div>
 
@@ -92,7 +83,7 @@ const BookDetailPage = () => {
               <ArrowLeft className="w-4 h-4 mr-2" />
               Назад
             </Button>
-            <Button variant="outline" onClick={handleShopClick}>
+            <Button variant="outline" onClick={handleHomeClick}>
               Перейти в магазин
             </Button>
           </div>
@@ -110,11 +101,6 @@ const BookDetailPage = () => {
             <Button variant="ghost" size="sm" onClick={handleHomeClick}>
               <Home className="w-4 h-4 mr-1" />
               Главная
-            </Button>
-            <span>/</span>
-            <Button variant="ghost" size="sm" onClick={handleShopClick}>
-              <ShoppingBag className="w-4 h-4 mr-1" />
-              Магазин
             </Button>
             <span>/</span>
             <span className="text-foreground">{book.title}</span>

@@ -30,7 +30,7 @@ const tickets = [
   },
   {
     name: "VIP",
-    price: "15 000 ₽",
+    price: "1 000 000 ₽",
     description: "Для глубокой трансформации",
     features: [
       "Всё из Премиум пакета",

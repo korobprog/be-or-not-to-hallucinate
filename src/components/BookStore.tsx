@@ -99,10 +99,15 @@ const BookStore = () => {
                       </span>
                     </div>
 
-                    <div className="flex items-center justify-between pt-2">
+                    {/* Цена */}
+                    <div className="text-center pt-2">
                       <div className="text-2xl font-bold text-foreground">
                         {book.price.toLocaleString()} ₽
                       </div>
+                    </div>
+
+                    {/* Кнопка корзины */}
+                    <div className="flex justify-center pt-2">
                       <Button
                         size="sm"
                         className="bg-accent hover:bg-accent/90 text-primary font-semibold"

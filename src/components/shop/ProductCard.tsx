@@ -129,20 +129,20 @@ const ProductCard = ({ book, onQuickView }: ProductCardProps) => {
           </span>
         </div>
 
-        {/* Цена и кнопка */}
-        <div className="flex items-center justify-between pt-2">
-          <div className="flex flex-col">
-            <div className="text-xl font-bold text-foreground">
-              {book.price.toLocaleString()} ₽
-            </div>
-            {book.originalPrice && book.originalPrice > book.price && (
-              <div className="text-sm text-muted-foreground line-through">
-                {book.originalPrice.toLocaleString()} ₽
-              </div>
-            )}
+        {/* Цена */}
+        <div className="text-center pt-2">
+          <div className="text-xl font-bold text-foreground">
+            {book.price.toLocaleString()} ₽
           </div>
+          {book.originalPrice && book.originalPrice > book.price && (
+            <div className="text-sm text-muted-foreground line-through">
+              {book.originalPrice.toLocaleString()} ₽
+            </div>
+          )}
+        </div>
 
-          {/* Кнопка корзины или управление количеством */}
+        {/* Кнопка корзины или управление количеством */}
+        <div className="flex justify-center pt-2">
           {!inCart ? (
             <Button
               size="sm"
